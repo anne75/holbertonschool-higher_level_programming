@@ -1,1 +1,2 @@
-Intro to loops and other statements in python
+# Python
+This repository contains all the problems solved at Holberton School to learn python.
