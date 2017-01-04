@@ -4,8 +4,8 @@ For our very first day of python, some bash was in order. Of course, we are not 
 1. Write a Shell script that runs Python code (inline command)  
 2. Write a Python script that prints exactly "Programming is like building a multilingual puzzle, followed by a new line, use `print`  
 3. Complete some code in order to print the integer stored in the variable number, followed by a string, followed by a new line. Use only `print` and the new `format`.
-4. Complete the source code in order to print the float stored in the variable number with a precision of 2 digits. Use only `print` and the new `format`.
-5. Write a program that prints numbers from 0 to 99 in a specific format, the last number being only followed by a new line. We can only use `print` twice, with `format`. We cannot use variables or import any module.  
+4. Complete the source code in order to print the float stored in the variable number with a precision of 2 digits. Use only `print` and the new `format`.  
+5. Write a string 3 times and slice it. 
 6. Complete some code to print Welcome to Holberton School! You are not allowed to use any loops or conditional statements. You have to use the variables str1 and str2 in your new line of code  
 7. Complete some source code, using string slicing.  
 8. More slicing.  
