@@ -11,4 +11,4 @@ if __name__ == "__main__":
     print("{:d}".format(sum))
 
 
-#print("{:d}".format(sum(int(x) for x in sys.argv[1:])))
+# print("{:d}".format(sum(int(x) for x in sys.argv[1:])))
