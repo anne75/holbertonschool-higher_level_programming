@@ -14,7 +14,7 @@ def main(a, b, operator):
     d = {"+": add, "-": sub, "*": mul, "/": div}
 
     if operator not in d:
-        print("Unknown operator. Available operators: +, -, * and /")
+        print("Unknown operator. Only: +, -, * and / available")
         sys.exit(1)
 
     print("{:d} {:s} {:d} = {:d}".format(a, operator, b, d[operator](a, b)))
