@@ -22,7 +22,7 @@ def main(a, b, operator):
 
 if __name__ == "__main__":
     if not len(sys.argv[1:]) == 3:
-        print("Usage: ./100-my_calculator.py <a> <operator> <b>")
+        print("./100-my_calculator.py <a> <operator> <b>")
         sys.exit(1)
 
     # I should use try statement for int ?
