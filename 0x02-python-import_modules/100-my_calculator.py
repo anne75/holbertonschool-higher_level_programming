@@ -3,27 +3,18 @@ import sys
 from calculator_1 import add, sub, mul, div
 
 
-def main(a, b, operator):
-    """ Main function
-
-    Args:
-        a: first integer
-        b: second integer
-        operator: operator
-    """
+if __name__ == "__main__":
     d = {"+": add, "-": sub, "*": mul, "/": div}
 
-    if operator not in d:
-        print("Unknown operator. Only: +, -, * and / available")
-        sys.exit(1)
-
-    print("{:d} {:s} {:d} = {:d}".format(a, operator, b, d[operator](a, b)))
-
-
-if __name__ == "__main__":
     if not len(sys.argv[1:]) == 3:
         print("./100-my_calculator.py <a> <operator> <b>")
         sys.exit(1)
 
+    if sys.argv[2] not in d:
+        print("Unknown operator. Only: +, -, * and / available")
+        sys.exit(1)
     # I should use try statement for int ?
-    main(int(sys.argv[1]), int(sys.argv[3]), sys.argv[2])
+    a = int(sys.argv[1])
+    b = int(sys.argv[3])
+    print("{:d} {} {:d} = {:d}".format(
+        a, sys.argv[2], b, d[sys.argv[2]](a, b)))
