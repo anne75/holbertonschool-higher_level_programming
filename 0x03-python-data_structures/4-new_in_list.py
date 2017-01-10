@@ -7,9 +7,10 @@ def new_in_list(li, idx, element):
     at idx if idx in the right range
 
     DO NOT use try/except
+    DO NOT consider neagive indexes
     """
     new = li[:]
     size = len(li)
-    if (-size <= idx < size):
+    if (0 <= idx < size):
         new[idx] = element
     return (new)

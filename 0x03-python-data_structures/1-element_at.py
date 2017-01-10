@@ -8,6 +8,6 @@ def element_at(mylist, idx):
 
     DO NOt use try/except
     """
-    if (idx < len(mylist)):
+    if (0 <= idx < len(mylist)):
         return (mylist[idx])
     return (None)
