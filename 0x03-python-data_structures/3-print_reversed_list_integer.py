@@ -8,3 +8,4 @@ def print_reversed_list_integer(li=[]):
     if li:
         if li is not None:
             print("\n".join(["{:d}".format(x) for x in reversed(li)]))
+    return (None)
