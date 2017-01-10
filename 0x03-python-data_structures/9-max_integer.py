@@ -6,7 +6,7 @@ def max_integer(my_list=[]):
     return the maximum value in a list of ints
     DO NOT use max
     """
-    if not my_list:
+    if not my_list ot my_list is None:
         return None
 
     max_value = 0
