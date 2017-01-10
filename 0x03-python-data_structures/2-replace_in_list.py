@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 
 def replace_in_list(mylist, idx, element):
@@ -6,4 +6,5 @@ def replace_in_list(mylist, idx, element):
         size = len(mylist)
         if (0 <= idx < size):
             mylist[idx] = element
+
     return (mylist)
