@@ -5,5 +5,5 @@ def print_list_integer(mylist=[]):
     """
     print the elements of a list of int
     """
-    if (mylist and mylist != None):
+    if (mylist and not None):
         print("\n".join("{:d}".format(x) for x in mylist))
