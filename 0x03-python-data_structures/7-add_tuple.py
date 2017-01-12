@@ -19,3 +19,5 @@ def add_tuple(tuple_a=(), tuple_b=()):
 
 # tuple((x + y for x, y in zip(tuple_a, tuple_b)))
 # does not work, stop iterating
+# David's solution better, use max(2, len)
+# Best solution, Richard's a = a + (0, 0)

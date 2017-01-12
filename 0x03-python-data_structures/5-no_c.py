@@ -9,3 +9,6 @@ def no_c(mystr):
     """
     my_list = [letter for letter in mystr if (letter.lower() != "c")]
     return ("".join(my_list))
+
+
+# better solution, Philip's, list.translate
