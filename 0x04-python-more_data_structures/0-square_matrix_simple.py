@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 
-def square_matrix(matrix=[]):
+def square_matrix_simple(matrix=[]):
     """
     computes the square value of all elements in matrix
 
@@ -11,4 +11,9 @@ def square_matrix(matrix=[]):
     """
     if matrix is None:
         return None
-    return ([[x * x for x in row] for row in matrix])
+    new = []
+    try:
+        new = [[x ** 2 for x in row] for row in matrix]
+    except TypeError:
+        new = [x ** 2 for x in matrix]
+    return (new)
