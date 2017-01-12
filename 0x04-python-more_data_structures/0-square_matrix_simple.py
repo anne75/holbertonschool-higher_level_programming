@@ -11,9 +11,4 @@ def square_matrix(matrix=[]):
     """
     if matrix is None:
         return None
-    new = []
-    try:
-        new = [[x * x for x in row] for row in matrix]
-    except TypeError:
-        new = [x * x for x in matrix]
-    return (new)
+    return ([[x * x for x in row] for row in matrix])
