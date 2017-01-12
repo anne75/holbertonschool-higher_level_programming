@@ -9,9 +9,10 @@ def square_matrix(matrix=[]):
 
     Return: a new matrix
     """
-    new = []
-    try:
-        new = [[x ** 2 for x in row] for row in matrix]
-    except TypeError:
-        new = [x ** 2 for x in matrix]
-    return (new)
+    return (list(map(lambda row: list(map(lambda x: x ** 2, row)), matrix)))
+#    new = []
+#    try:
+#        new = [[x ** 2 for x in row] for row in matrix]
+#    except TypeError:
+#        new = [x ** 2 for x in matrix]
+#    return (new)
