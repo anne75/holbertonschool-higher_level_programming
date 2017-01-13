@@ -14,7 +14,7 @@ def safe_print_list(my_list=[], x=0):
     while count < x:
         try:
             print("{}".format(my_list[count]), end="")
-        except (IndexError, TypeError, ValueError):
+        except:
             break
         count += 1
     if (count):
