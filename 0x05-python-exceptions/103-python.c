@@ -111,4 +111,8 @@ void print_python_list(PyObject *p)
 				print_python_float(o);
 		}
 	}
+	else
+	{
+		puts("  [ERROR] Invalid List Object");
+	}
 }
