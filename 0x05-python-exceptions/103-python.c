@@ -35,7 +35,7 @@ void print_python_bytes(PyObject *p)
 {
 	Py_ssize_t size, max_v, i;
 
-	printf("DEBUG %s\n", p->ob_type->tp_name);
+/*	printf("%s\n", p->ob_type->tp_name);*/
 	puts("[.] bytes object info");
 	if (is_type(TYPE(p)->tp_name, "bytes"))
 	{
@@ -46,7 +46,7 @@ void print_python_bytes(PyObject *p)
 		printf("  first %lu bytes:", max_v);
 		for (i = 0; i < max_v; i += 1)
 			printf(" %02x",
-			       (unsigned)(((PyBytesObject *)p)->ob_sval[i]));
+			       (((PyBytesObject *)p)->ob_sval[i]) & 0xff);
 		puts("");
 	}
 	else
