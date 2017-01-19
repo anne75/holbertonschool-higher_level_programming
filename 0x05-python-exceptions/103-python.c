@@ -42,7 +42,7 @@ void print_python_bytes(PyObject *p)
 		size = SIZE(p);
 		printf("  size: %lu\n", size);
 		printf("  trying string: %s\n",((PyBytesObject *)p)->ob_sval);
-		max_v = (size > 10 ) ? 10 : size + 1;
+		max_v = (size >= 10 ) ? 10 : size + 1;
 		printf("  first %lu bytes:", max_v);
 		for (i = 0; i < max_v; i += 1)
 			printf(" %02x",
@@ -80,7 +80,9 @@ void print_python_float(PyObject *p)
 	}
 }
 
-
+/* thanks to https://mail.python.org/pipermail/python-list/2009-March/527813.
+ * html
+ */
 
 
 /**
