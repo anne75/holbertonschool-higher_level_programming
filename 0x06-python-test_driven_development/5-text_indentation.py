@@ -10,7 +10,8 @@ You can run it with  python3 -m doctest ./tests/5-text_indentation.txt
 
 def text_indentation(text):
     """
-    Replaces a space after ., ? and : with 2 newlines in a string, prints the result
+    Replaces a space after ., ? and : with 2 newlines in a string, prints the
+    result
 
     Argument:
        text: a string
@@ -18,17 +19,21 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
     new = []
-    flag = False
-    for i, letter in enumerate(text):
-        if letter in ".?:":
-            new.append("{}\n\n".format(letter))
+    text = text.strip()
+    flag = True
+    for letter in text:
+        if letter in ".?:\n":
             flag = True
+            if letter == "\n":
+                new.append("\n")
+            else:
+                new.append("{}\n\n".format(letter))
         else:
             if not flag:
                 new.append(letter)
             else:
-                flag = False
                 if not letter == " ":
                     new.append(letter)
+                    flag = False
 
     print("".join(new), end="")

@@ -68,28 +68,27 @@ works only with string
     Howdy, Yall!
 
     >>> text_indentation(" SpaceFirst")		#doctest: +REPORT_NDIFF
-     SpaceFirst
+    SpaceFirst
 
     >>> text_indentation("  .  ?     :      ")	#doctest: +REPORT_NDIFF
-      .
+    .
     <BLANKLINE>
-     ?
+    ?
     <BLANKLINE>
-        :
-    <BLANKLINE>
+    :
     <BLANKLINE>
 
     >>> text_indentation("    MY SPOON IS TOO BIG!...    I am a banana.\n     blearg    ")
-        MY SPOON IS TOO BIG!.
+    MY SPOON IS TOO BIG!.
     <BLANKLINE>
     .
     <BLANKLINE>
     .
     <BLANKLINE>
-       I am a banana.
+    I am a banana.
     <BLANKLINE>
     <BLANKLINE>
-         blearg    
+    blearg
 
     >>> text_indentation(":?.")	#doctest: +REPORT_NDIFF
     :
