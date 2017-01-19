@@ -37,7 +37,7 @@ def matrix_divided(matrix, div):
             raise TypeError(error)
         rows_length.append(len(row))
         for element in row:
-            if not isinstance(element, allowed) or type(element) is bool:
+            if not isinstance(element, allowed):
                 raise TypeError(error)
 
 # could use all(isinstance(x, allowed) for x in row)
