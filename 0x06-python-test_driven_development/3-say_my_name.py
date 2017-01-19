@@ -8,6 +8,7 @@ you could call it with
 python3 -m doctest -v ./tests/3-say_my_name.txt
 """
 
+
 def say_my_name(first_name, last_name=""):
     """
     Prints the full name of a person
