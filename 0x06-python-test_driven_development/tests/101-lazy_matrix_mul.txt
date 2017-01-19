@@ -21,7 +21,7 @@ It should not work if the arguments are not not a non empty list of non empty li
     ...             func(test[0], test[1])
     ...         except Exception as e:
     ...             pass
-    ...		    print("Failed with {}:{} for input {} and {}".format(type(e).__name__, e, test[0], test[1]))
+    ...		    print("Failed with {}: {}".format(type(e).__name__, e))
     ...         else:
     ...             print("NO EXCEPTION for input {} and {}".format(test[0], test[1]))
     ... 
@@ -31,52 +31,55 @@ It should not work if the arguments are not not a non empty list of non empty li
 Arguments are not both lists of lists
 
     >>> test_exceptions(lazy_matrix_mul, tests)
-    Failed with TypeError:Invalid data string supplied: a for input 2.3 and a string
+    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U32') dtype('<U32') dtype('<U32')
     NO EXCEPTION for input 1.2 and [1, 2]
-    Failed with TypeError:unsupported operand type(s) for *: 'float' and 'set' for input 1.5 and {'c', 'a', 'd', 'r', 'b'}
-    Failed with TypeError:unsupported operand type(s) for *: 'int' and 'dict' for input 5 and {'a': 1, 'b': 4.5}
+    Failed with TypeError: unsupported operand type(s) for *: 'float' and 'set'
+    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'dict'
     NO EXCEPTION for input 4 and range(0, 5)
-    Failed with TypeError:Cannot cast array data from dtype('float64') to dtype('S32') according to the rule 'safe' for input 3.45 and b'byte literal'
-    Failed with TypeError:unsupported operand type(s) for *: 'int' and 'NoneType' for input 3 and None
-    Failed with TypeError:Invalid data string supplied: a for input [[1, 2], [1, 2]] and a string
-    Failed with ValueError:shapes (2,2) and (1,2) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and [1, 2]
-    Failed with ValueError:shapes (2,2) and (1,1) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and {'c', 'a', 'd', 'r', 'b'}
-    Failed with ValueError:shapes (2,2) and (1,1) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and {'a': 1, 'b': 4.5}
-    Failed with ValueError:shapes (2,2) and (1,5) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and range(0, 5)
-    Failed with ValueError:shapes (2,2) and (1,1) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and b'byte literal'
-    Failed with ValueError:shapes (2,2) and (1,1) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and None
+    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('S32') dtype('S32') dtype('S32')
+    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'NoneType'
+    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U8') dtype('<U8') dtype('<U8')
+    NO EXCEPTION for input [[1, 2], [1, 2]] and [1, 2]
+    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'set'
+    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'dict'
+    Failed with ValueError: shapes (2,2) and (5,) not aligned: 2 (dim 1) != 5 (dim 0)
+    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('S12') dtype('S12') dtype('S12')
+    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'NoneType'
+
 
     >>> test_exceptions(lazy_matrix_mul, [(test[1], test[0]) for test in tests])
-    Failed with TypeError:Invalid data string supplied: a for input a string and 2.3
-    Failed with ValueError:shapes (1,2) and (1,1) not aligned: 2 (dim 1) != 1 (dim 0) for input [1, 2] and 1.2
-    Failed with TypeError:unsupported operand type(s) for *: 'set' and 'float' for input {'c', 'a', 'd', 'r', 'b'} and 1.5
-    Failed with TypeError:unsupported operand type(s) for *: 'dict' and 'int' for input {'a': 1, 'b': 4.5} and 5
-    Failed with ValueError:shapes (1,5) and (1,1) not aligned: 5 (dim 1) != 1 (dim 0) for input range(0, 5) and 4
-    Failed with TypeError:Cannot cast array data from dtype('float64') to dtype('S32') according to the rule 'safe' for input b'byte literal' and 3.45
-    Failed with TypeError:unsupported operand type(s) for *: 'NoneType' and 'int' for input None and 3
-    Failed with TypeError:Invalid data string supplied: a for input a string and [[1, 2], [1, 2]]
+    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U32') dtype('<U32') dtype('<U32')
+    NO EXCEPTION for input [1, 2] and 1.2
+    Failed with TypeError: unsupported operand type(s) for *: 'set' and 'float'
+    Failed with TypeError: unsupported operand type(s) for *: 'dict' and 'int'
+    NO EXCEPTION for input range(0, 5) and 4
+    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('S32') dtype('S32') dtype('S32')
+    Failed with TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U8') dtype('<U8') dtype('<U8')
     NO EXCEPTION for input [1, 2] and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (1,1) and (2,2) not aligned: 1 (dim 1) != 2 (dim 0) for input {'c', 'a', 'd', 'r', 'b'} and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (1,1) and (2,2) not aligned: 1 (dim 1) != 2 (dim 0) for input {'a': 1, 'b': 4.5} and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (1,5) and (2,2) not aligned: 5 (dim 1) != 2 (dim 0) for input range(0, 5) and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (1,1) and (2,2) not aligned: 1 (dim 1) != 2 (dim 0) for input b'byte literal' and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (1,1) and (2,2) not aligned: 1 (dim 1) != 2 (dim 0) for input None and [[1, 2], [1, 2]]
+    Failed with TypeError: unsupported operand type(s) for *: 'set' and 'int'
+    Failed with TypeError: unsupported operand type(s) for *: 'dict' and 'int'
+    Failed with ValueError: shapes (5,) and (2,2) not aligned: 5 (dim 0) != 2 (dim 0)
+    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('S12') dtype('S12') dtype('S12')
+    Failed with TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
 
 
 An argument is an empty list
     >>> tests = [([], [[1, 2], [1, 2]]), ([[]], [[1, 2], [1, 2]]), ([[], []], [[1, 2], [1, 2]]), ([[]], [[]])]
 
     >>> test_exceptions(lazy_matrix_mul, tests)
-    Failed with ValueError:shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0) for input [] and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0) for input [[]] and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (2,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0) for input [[], []] and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (1,0) and (1,0) not aligned: 0 (dim 1) != 1 (dim 0) for input [[]] and [[]]
+    Failed with ValueError: shapes (0,) and (2,2) not aligned: 0 (dim 0) != 2 (dim 0)
+    Failed with ValueError: shapes (1,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
+    Failed with ValueError: shapes (2,0) and (2,2) not aligned: 0 (dim 1) != 2 (dim 0)
+    Failed with ValueError: shapes (1,0) and (1,0) not aligned: 0 (dim 1) != 1 (dim 0)
+
 
     >>> test_exceptions(lazy_matrix_mul, [(test[1], test[0]) for test in tests])
-    Failed with ValueError:shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and []
-    Failed with ValueError:shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and [[]]
+    Failed with ValueError: shapes (2,2) and (0,) not aligned: 2 (dim 1) != 0 (dim 0)
+    Failed with ValueError: shapes (2,2) and (1,0) not aligned: 2 (dim 1) != 1 (dim 0)
     NO EXCEPTION for input [[1, 2], [1, 2]] and [[], []]
-    Failed with ValueError:shapes (1,0) and (1,0) not aligned: 0 (dim 1) != 1 (dim 0) for input [[]] and [[]]
+    Failed with ValueError: shapes (1,0) and (1,0) not aligned: 0 (dim 1) != 1 (dim 0)
+
 
 It should not work if the matrixes are not matrixes and contain only floats or ints
 
@@ -85,27 +88,30 @@ Should automate that
     >>> tests = [([[1, 2], [1, 2]], [[1, 2], ["a", 2]]), ([[1, 2], [1, 2]], [[1, 2], [[1, 2], 2]]), ([[1, 2], [1, 2]], [[1, 2], [True, 2]]), ([[1, 2], [1, 2]], [[1, 2], [1, None]])]
 
     >>> test_exceptions(lazy_matrix_mul, tests)
-    Failed with ValueError:data type must provide an itemsize for input [[1, 2], [1, 2]] and [[1, 2], ['a', 2]]
-    Failed with ValueError:setting an array element with a sequence. for input [[1, 2], [1, 2]] and [[1, 2], [[1, 2], 2]]
+    Failed with ValueError: data type must provide an itemsize
+    Failed with ValueError: setting an array element with a sequence.
     NO EXCEPTION for input [[1, 2], [1, 2]] and [[1, 2], [True, 2]]
-    Failed with TypeError:unsupported operand type(s) for *: 'int' and 'NoneType' for input [[1, 2], [1, 2]] and [[1, 2], [1, None]]
+    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'NoneType'
+
 
     >>> test_exceptions(lazy_matrix_mul, [(test[1], test[0]) for test in tests])
-    Failed with ValueError:data type must provide an itemsize for input [[1, 2], ['a', 2]] and [[1, 2], [1, 2]]
-    Failed with ValueError:setting an array element with a sequence. for input [[1, 2], [[1, 2], 2]] and [[1, 2], [1, 2]]
+    Failed with ValueError: data type must provide an itemsize
+    Failed with ValueError: setting an array element with a sequence.
     NO EXCEPTION for input [[1, 2], [True, 2]] and [[1, 2], [1, 2]]
-    Failed with TypeError:unsupported operand type(s) for *: 'NoneType' and 'int' for input [[1, 2], [1, None]] and [[1, 2], [1, 2]]
+    Failed with TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+
 
 In one of the arguments, we have missing/extra elements
     >>> tests = [([[1, 2], [1, 2]], [[1, 2], [2]]), ([[1, 2], [1, 2]], [[1, 2], [1, 2], [2]])]
 
     >>> test_exceptions(lazy_matrix_mul, tests)
-    Failed with ValueError:shapes (2,2) and (1,2) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and [[1, 2], [2]]
-    Failed with ValueError:shapes (2,2) and (1,3) not aligned: 2 (dim 1) != 1 (dim 0) for input [[1, 2], [1, 2]] and [[1, 2], [1, 2], [2]]
+    Failed with ValueError: setting an array element with a sequence.
+    Failed with ValueError: setting an array element with a sequence.
 
     >>> test_exceptions(lazy_matrix_mul, [(test[1], test[0]) for test in tests])
-    NO EXCEPTION for input [[1, 2], [2]] and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (1,3) and (2,2) not aligned: 3 (dim 1) != 2 (dim 0) for input [[1, 2], [1, 2], [2]] and [[1, 2], [1, 2]]
+    Failed with ValueError: setting an array element with a sequence.
+    Failed with ValueError: setting an array element with a sequence.
+
 
 
 Matrixes can be multiplied if the number of rows of first = nb of cols of the second
@@ -113,8 +119,8 @@ Otherwise
     >>> tests = [([[1, 2, 3], [1, 2, 3]], [[1, 2], [1, 2]]), ([[1, 2], [1, 2]], [[1, 2, 3], [1, 2, 3], [3, 4, 5]])]
 
     >>> test_exceptions(lazy_matrix_mul, tests)
-    Failed with ValueError:shapes (2,3) and (2,2) not aligned: 3 (dim 1) != 2 (dim 0) for input [[1, 2, 3], [1, 2, 3]] and [[1, 2], [1, 2]]
-    Failed with ValueError:shapes (2,2) and (3,3) not aligned: 2 (dim 1) != 3 (dim 0) for input [[1, 2], [1, 2]] and [[1, 2, 3], [1, 2, 3], [3, 4, 5]]
+    Failed with ValueError: shapes (2,3) and (2,2) not aligned: 3 (dim 1) != 2 (dim 0)
+    Failed with ValueError: shapes (2,2) and (3,3) not aligned: 2 (dim 1) != 3 (dim 0)
 
 Now, it should work for ints and floats in matrixes
 
