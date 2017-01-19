@@ -91,9 +91,6 @@ works only with string
     <BLANKLINE>
          blearg    
 
-    >>> text_indentation("Mwaha!" + u'\u2020')	#doctest: +REPORT_NDIFF
-    Mwaha!†
-
     >>> text_indentation(":?.")	#doctest: +REPORT_NDIFF
     :
     <BLANKLINE>
