@@ -31,11 +31,9 @@ Check it prints out something of the right size, no extra space or new line
     ##########
     ##########
 
-It should return a new line if n = 0
+It should return no new line if n = 0
 
    >>> print_square(0)
-   <BLANKLINE>
-
 
 It works only for integers >= 0
 
