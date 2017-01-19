@@ -22,9 +22,12 @@ def lazy_matrix_mul(m_a, m_b):
     Returns:
         a matrix, the product of the arguments
     """
-    a_np = np.matrix(m_a)
-    b_np = np.matrix(m_b)
+#    a_np = np.matrix(m_a)
+#    b_np = np.matrix(m_b)
 
-    p_np = a_np * b_np
+#    p_np = a_np * b_np
 
+    a_np = np.array(m_a)
+    b_np = np.array(m_b)
+    p_np = np.dot(a_np, b_np)
     return (p_np)
