@@ -33,11 +33,15 @@ This function is symmetric for its arguments with integers
 
 It also works with ints and floats
 
-    >>> test_sym(add_integer, [(1.1, 2), (1, -2.45)])
+    >>> test_sym(add_integer, [(1.1, 2), (1, -2.45), (1, True), (False, -56.7)])
     3
     3
     -1
     -1
+    2
+    2
+    -56
+    -56
 
 If both arguments are floats, casting is done before the addition
 
@@ -77,7 +81,7 @@ If the second argument is not an integer or a float it will fail
     ...             print("Did not fail for input {} and {}".format(test[0], test[1]))
     ... 
 
-    >>> tests = [(1, "a"), (2.3, "a string"), (1, [1, 2]), (1.2, [1, 2]), (1, set("abracadabra")), (1.5, set("abracadabra")), (5, {"a":1, "b":4.5}), (3, test_exceptions), (2, True), (4, range(5)), (3.45, b'byte literal')] 
+    >>> tests = [(1, "a"), (2.3, "a string"), (1, [1, 2]), (1.2, [1, 2]), (1, set("abracadabra")), (1.5, set("abracadabra")), (5, {"a":1, "b":4.5}), (3, test_exceptions), (4, range(5)), (3.45, b'byte literal'), (3.5, None)] 
 
     >>> test_exceptions(add_integer, tests)
     Failed with TypeError for input <class 'int'> and <class 'str'>
@@ -88,9 +92,9 @@ If the second argument is not an integer or a float it will fail
     Failed with TypeError for input <class 'float'> and <class 'set'>
     Failed with TypeError for input <class 'int'> and <class 'dict'>
     Failed with TypeError for input <class 'int'> and <class 'function'>
-    Failed with TypeError for input <class 'int'> and <class 'bool'>
     Failed with TypeError for input <class 'int'> and <class 'range'>
     Failed with TypeError for input <class 'float'> and <class 'bytes'>
+    Failed with TypeError for input <class 'float'> and <class 'NoneType'>
 
 If the first argument is not an integer or a float it will fail
 
@@ -103,9 +107,9 @@ If the first argument is not an integer or a float it will fail
     Failed with TypeError for input <class 'set'> and <class 'float'>
     Failed with TypeError for input <class 'dict'> and <class 'int'>
     Failed with TypeError for input <class 'function'> and <class 'int'>
-    Failed with TypeError for input <class 'bool'> and <class 'int'>
     Failed with TypeError for input <class 'range'> and <class 'int'>
     Failed with TypeError for input <class 'bytes'> and <class 'float'>
+    Failed with TypeError for input <class 'NoneType'> and <class 'float'>
 
 Should add NoneType
 

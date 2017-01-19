@@ -21,9 +21,9 @@ def add_integer(a, b):
         a + b or raise error if input not a number
     """
     allowed = (float, int)
-    if not isinstance(a, allowed) or type(a) is bool:
+    if not isinstance(a, allowed):
         raise TypeError("a must be an integer")
-    if not isinstance(b, allowed) or type(b) is bool:
+    if not isinstance(b, allowed):
         raise TypeError("b must be an integer")
 
     a_int = int(a)
