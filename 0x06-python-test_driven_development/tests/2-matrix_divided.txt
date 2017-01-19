@@ -21,6 +21,10 @@ It should not work if we try to divide by 0
     Traceback (most recent call last):
     ZeroDivisionError: division by zero
 
+    >>> matrix_divided([[1, 2], [3, 4]], False)
+    Traceback (most recent call last):
+    ZeroDivisionError: division by zero
+
 It should not work if the matrix is not a non empty list of non empty lists
 and div is not a non 0 number
 
@@ -35,7 +39,7 @@ and div is not a non 0 number
     ...             print("Did not fail for input {} and {}".format(test[0], test[1]))
     ... 
 
-    >>> tests = [(2.3, "a string"), (1.2, [1, 2]), (1, set("abracadabra")), (1.5, set("abracadabra")), (5, {"a":1, "b":4.5}), (5.34, {"a":1, "b":4.5}), (3, test_exceptions), (3.45, test_exceptions), (4, range(5)), (3.45, b'byte literal'), (3, None), ([], 3.4), ([[]], -5), ([[],[]], 3.6), ([[1, 2], [3, 4]], None), ([[1, 2], [3, 4]], True)] 
+    >>> tests = [(2.3, "a string"), (1.2, [1, 2]), (1, set("abracadabra")), (1.5, set("abracadabra")), (5, {"a":1, "b":4.5}), (5.34, {"a":1, "b":4.5}), (3, test_exceptions), (3.45, test_exceptions), (4, range(5)), (3.45, b'byte literal'), (3, None), ([], 3.4), ([[]], -5), ([[],[]], 3.6), ([[1, 2], [3, 4]], None)] 
 
 Should separate empty stuff to print it better
 
@@ -55,7 +59,6 @@ Should separate empty stuff to print it better
     Failed with TypeError for input <class 'list'> and <class 'int'>
     Failed with TypeError for input <class 'list'> and <class 'float'>
     Failed with TypeError for input <class 'list'> and <class 'NoneType'>
-    Failed with TypeError for input <class 'list'> and <class 'bool'>
 
     >>> test_exceptions(matrix_divided, [(test[1], test[0]) for test in tests])
     Failed with TypeError for input <class 'str'> and <class 'float'>
@@ -73,7 +76,7 @@ Should separate empty stuff to print it better
     Failed with TypeError for input <class 'int'> and <class 'list'>
     Failed with TypeError for input <class 'float'> and <class 'list'>
     Failed with TypeError for input <class 'NoneType'> and <class 'list'>
-    Failed with TypeError for input <class 'bool'> and <class 'list'>
+
 
 It should work only if the first argument has rows of the same length
 

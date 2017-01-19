@@ -23,7 +23,7 @@ def matrix_divided(matrix, div):
     """
     allowed = (float, int)
     error = "matrix must be a matrix (list of lists) of integers/floats"
-    if (not isinstance(div, allowed)) or type(div) is bool:
+    if (not isinstance(div, allowed)):
         raise TypeError("div must be a number")
     if div == 0:
         raise ZeroDivisionError("division by zero")
