@@ -107,6 +107,8 @@ If the first argument is not an integer or a float it will fail
     Failed with TypeError for input <class 'range'> and <class 'int'>
     Failed with TypeError for input <class 'bytes'> and <class 'float'>
 
+Should add NoneType
+
 It does not work to add 2 sequence types
 
     >>> add_integer("cannot add", "strings")

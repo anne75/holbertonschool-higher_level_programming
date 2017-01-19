@@ -3,23 +3,6 @@ The ``100-matrix_mul`` module
 
 This is a text file in reStructuredText format to test the above module.
 
-The module exists in current directory and function to test exists
-------------------------------------------------------------------
-    >>> __import__('100-matrix_mul')	#doctest: +ELLIPSIS
-    <module '100-matrix_mul' ...>
-
-    >>> __import__('100-matrix_mul').matrix_mul	#doctest: +ELLIPSIS
-    <function matrix_mul at 0x...>
-
-
-The module contains documentation
----------------------------------
-
-    >>> len(__import__('100-matrix_mul').__doc__) > 0
-    True
-    >>> len(__import__('100-matrix_mul').matrix_mul.__doc__) > 0
-    True
-
 Using ``matrix_mul``
 -------------------
 
@@ -28,3 +11,122 @@ First import ``matrix_mul`` from the ``100-matrix_mul`` module:
     >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
 
 Now use it:
+
+
+It should not work if the arguments are not not a non empty list of non empty lists
+
+    >>> def test_exceptions(func, tests):
+    ...     for test in tests:
+    ...         try:
+    ...             func(test[0], test[1])
+    ...         except Exception as e:
+    ...             pass
+    ...		    print("Failed with {}:{} for input {} and {}".format(type(e).__name__, e, type(test[0]), type(test[1])))
+    ...         else:
+    ...             print("Did not fail for input {} and {}".format(test[0], test[1]))
+    ... 
+
+    >>> tests = [(2.3, "a string"), (1.2, [1, 2]), (1.5, set("abracadabra")), (5, {"a":1, "b":4.5}), (3.45, test_exceptions), (4, range(5)), (3.45, b'byte literal'), (3, None), ([[1, 2], [1, 2]], "a string"), ([[1, 2], [1, 2]], [1, 2]), ([[1, 2], [1, 2]], set("abracadabra")), ([[1, 2], [1, 2]], {"a":1, "b":4.5}), ([[1, 2], [1, 2]], test_exceptions), ([[1, 2], [1, 2]], range(5)), ([[1, 2], [1, 2]], b'byte literal'), ([[1, 2], [1, 2]], None)] 
+
+Arguments are not both lists of lists
+
+    >>> test_exceptions(matrix_mul, tests)
+    Failed with TypeError:m_a must be a list for input <class 'float'> and <class 'str'>
+    Failed with TypeError:m_a must be a list for input <class 'float'> and <class 'list'>
+    Failed with TypeError:m_a must be a list for input <class 'float'> and <class 'set'>
+    Failed with TypeError:m_a must be a list for input <class 'int'> and <class 'dict'>
+    Failed with TypeError:m_a must be a list for input <class 'float'> and <class 'function'>
+    Failed with TypeError:m_a must be a list for input <class 'int'> and <class 'range'>
+    Failed with TypeError:m_a must be a list for input <class 'float'> and <class 'bytes'>
+    Failed with TypeError:m_a must be a list for input <class 'int'> and <class 'NoneType'>
+    Failed with TypeError:m_b must be a list for input <class 'list'> and <class 'str'>
+    Failed with TypeError:m_b must be a list for input <class 'list'> and <class 'list'>
+    Failed with TypeError:m_b must be a list for input <class 'list'> and <class 'set'>
+    Failed with TypeError:m_b must be a list for input <class 'list'> and <class 'dict'>
+    Failed with TypeError:m_b must be a list for input <class 'list'> and <class 'function'>
+    Failed with TypeError:m_b must be a list for input <class 'list'> and <class 'range'>
+    Failed with TypeError:m_b must be a list for input <class 'list'> and <class 'bytes'>
+    Failed with TypeError:m_b must be a list for input <class 'list'> and <class 'NoneType'>
+
+    >>> test_exceptions(matrix_mul, [(test[1], test[0]) for test in tests])
+    Failed with TypeError:m_a must be a list for input <class 'str'> and <class 'float'>
+    Failed with TypeError:m_a must be a list for input <class 'list'> and <class 'float'>
+    Failed with TypeError:m_a must be a list for input <class 'set'> and <class 'float'>
+    Failed with TypeError:m_a must be a list for input <class 'dict'> and <class 'int'>
+    Failed with TypeError:m_a must be a list for input <class 'function'> and <class 'float'>
+    Failed with TypeError:m_a must be a list for input <class 'range'> and <class 'int'>
+    Failed with TypeError:m_a must be a list for input <class 'bytes'> and <class 'float'>
+    Failed with TypeError:m_a must be a list for input <class 'NoneType'> and <class 'int'>
+    Failed with TypeError:m_a must be a list for input <class 'str'> and <class 'list'>
+    Failed with TypeError:m_a must be a list for input <class 'list'> and <class 'list'>
+    Failed with TypeError:m_a must be a list for input <class 'set'> and <class 'list'>
+    Failed with TypeError:m_a must be a list for input <class 'dict'> and <class 'list'>
+    Failed with TypeError:m_a must be a list for input <class 'function'> and <class 'list'>
+    Failed with TypeError:m_a must be a list for input <class 'range'> and <class 'list'>
+    Failed with TypeError:m_a must be a list for input <class 'bytes'> and <class 'list'>
+    Failed with TypeError:m_a must be a list for input <class 'NoneType'> and <class 'list'>
+
+
+An argument is an empty list
+    >>> tests = [([], [[1, 2], [1, 2]]), ([[]], [[1, 2], [1, 2]]), ([[], []], [[1, 2], [1, 2]]), ([[]], [[]])]
+
+    >>> test_exceptions(matrix_mul, tests)
+    Failed with ValueError:m_a can't be empty for input <class 'list'> and <class 'list'>
+    Failed with ValueError:m_a can't be empty for input <class 'list'> and <class 'list'>
+    Failed with ValueError:m_a can't be empty for input <class 'list'> and <class 'list'>
+    Failed with ValueError:m_a can't be empty for input <class 'list'> and <class 'list'>
+
+    >>> test_exceptions(matrix_mul, [(test[1], test[0]) for test in tests])
+    Failed with ValueError:m_b can't be empty for input <class 'list'> and <class 'list'>
+    Failed with ValueError:m_b can't be empty for input <class 'list'> and <class 'list'>
+    Failed with ValueError:m_b can't be empty for input <class 'list'> and <class 'list'>
+    Failed with ValueError:m_a can't be empty for input <class 'list'> and <class 'list'>
+
+It should not work if the matrixes are not matrixes and contain only floats or ints
+
+In one of the arguments, an element is not a number (int or float)
+Should automate that
+    >>> tests = [([[1, 2], [1, 2]], [[1, 2], ["a", 2]]), ([[1, 2], [1, 2]], [[1, 2], [[1, 2], 2]]), ([[1, 2], [1, 2]], [[1, 2], [True, 2]]), ([[1, 2], [1, 2]], [[1, 2], [1, None]])]
+
+    >>> test_exceptions(matrix_mul, tests)
+    Failed with TypeError:m_b should contain only integers or floats for input <class 'list'> and <class 'list'>
+    Failed with TypeError:m_b should contain only integers or floats for input <class 'list'> and <class 'list'>
+    Failed with TypeError:m_b should contain only integers or floats for input <class 'list'> and <class 'list'>
+    Failed with TypeError:m_b should contain only integers or floats for input <class 'list'> and <class 'list'>
+
+    >>> test_exceptions(matrix_mul, [(test[1], test[0]) for test in tests])
+    Failed with TypeError:m_a should contain only integers or floats for input <class 'list'> and <class 'list'>
+    Failed with TypeError:m_a should contain only integers or floats for input <class 'list'> and <class 'list'>
+    Failed with TypeError:m_a should contain only integers or floats for input <class 'list'> and <class 'list'>
+    Failed with TypeError:m_a should contain only integers or floats for input <class 'list'> and <class 'list'>
+
+
+In one of the arguments, we have missing/extra elements
+    >>> tests = [([[1, 2], [1, 2]], [[1, 2], [2]]), ([[1, 2], [1, 2]], [[1, 2], [1, 2], [2]])]
+
+    >>> test_exceptions(matrix_mul, tests)
+    Failed with TypeError:each row of m_b must should be of the same size for input <class 'list'> and <class 'list'>
+    Failed with TypeError:each row of m_b must should be of the same size for input <class 'list'> and <class 'list'>
+
+    >>> test_exceptions(matrix_mul, [(test[1], test[0]) for test in tests])
+    Failed with TypeError:each row of m_a must should be of the same size for input <class 'list'> and <class 'list'>
+    Failed with TypeError:each row of m_a must should be of the same size for input <class 'list'> and <class 'list'>
+
+Matrixes can be multiplied if the number of rows of first = nb of cols of the second
+Otherwise
+    >>> tests = [([[1, 2, 3], [1, 2, 3]], [[1, 2], [1, 2]]), ([[1, 2], [1, 2]], [[1, 2, 3], [1, 2, 3], [3, 4, 5]])]
+
+    >>> test_exceptions(matrix_mul, tests)
+    Failed with ValueError:m_a and m_b can't be multiplied for input <class 'list'> and <class 'list'>
+    Failed with ValueError:m_a and m_b can't be multiplied for input <class 'list'> and <class 'list'>
+
+Now, it should work for ints and floats in matrixes
+
+    >>> def test_good(func, tests):
+    ...     for test in tests:
+    ...         print(func(test[0], test[1]))
+
+    >>> tests = [([[1.5425, 5.252], [646, 34]], [[1, 2, 3.45], [5, 68, -5.67]]), ([[23, 45.64, 3], [235, -53, 5], [0, 0, 0]], [[45, -6.325, 7], [-5245, 54, 21], [1, 2, 3]])]
+    >>> test_good(matrix_mul, tests)
+    [[27.8025, 360.22099999999995, -24.457214999999998], [816, 3604, 2035.9200000000003]]
+    [[-238343.80000000002, 2325.085, 1128.44], [288565, -4338.375, 547], [0, 0.0, 0]]
