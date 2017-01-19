@@ -1,0 +1,103 @@
+The ``5-test_indentation`` module
+======================
+
+This is a text file in reStructuredText format to test the above module.
+
+Using ``text_indentation``
+-------------------
+
+First import ``text_indentation`` from the ``5-text_indentation`` module:
+
+    >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Now use it:
+
+
+
+the output change the space to a newline, so no trailing space
+works only with string
+
+    >>> def test_exceptions(func, tests):
+    ...     for test in tests:
+    ...         try:
+    ...             func(test)
+    ...         except Exception as e:
+    ...             pass
+    ...		    print("Failed with {} for input {}".format(type(e).__name__, type(test)))
+    ...         else:
+    ...             print("Did not fail for input {}".format(test))
+    ... 
+
+    >>> tests = [2.3, 55, [1, 2], set("abracadabra"), {"a":1, "b":4.5}, test_exceptions, range(5), b'byte literal', None] 
+
+    >>> test_exceptions(text_indentation, tests)
+    Failed with TypeError for input <class 'float'>
+    Failed with TypeError for input <class 'int'>
+    Failed with TypeError for input <class 'list'>
+    Failed with TypeError for input <class 'set'>
+    Failed with TypeError for input <class 'dict'>
+    Failed with TypeError for input <class 'function'>
+    Failed with TypeError for input <class 'range'>
+    Failed with TypeError for input <class 'bytes'>
+    Failed with TypeError for input <class 'NoneType'>
+
+
+    >>> text_indentation("What? Pants are: blue. Purple.")	#doctest: +REPORT_NDIFF
+    What?
+    <BLANKLINE>
+    Pants are:
+    <BLANKLINE>
+    blue.
+    <BLANKLINE>
+    Purple.
+    <BLANKLINE>
+
+    >>> text_indentation(".?\nWaffles:\n?")	#doctest: +REPORT_NDIFF
+    .
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    <BLANKLINE>
+    Waffles:
+    <BLANKLINE>
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+
+    >>> text_indentation("Howdy, Yall!")	#doctest: +REPORT_NDIFF
+    Howdy, Yall!
+
+    >>> text_indentation(" SpaceFirst")		#doctest: +REPORT_NDIFF
+     SpaceFirst
+
+    >>> text_indentation("  .  ?     :      ")	#doctest: +REPORT_NDIFF
+      .
+    <BLANKLINE>
+     ?
+    <BLANKLINE>
+        :
+    <BLANKLINE>
+    <BLANKLINE>
+
+    >>> text_indentation("    MY SPOON IS TOO BIG!...    I am a banana.\n     blearg    ")
+        MY SPOON IS TOO BIG!.
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+    .
+    <BLANKLINE>
+       I am a banana.
+    <BLANKLINE>
+    <BLANKLINE>
+         blearg    
+
+    >>> text_indentation("Mwaha!" + u'\u2020')	#doctest: +REPORT_NDIFF
+    Mwaha!†
+
+    >>> text_indentation(":?.")	#doctest: +REPORT_NDIFF
+    :
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+    .
+    <BLANKLINE>

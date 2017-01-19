@@ -1,0 +1,113 @@
+The ``3-say_my_name`` module
+======================
+
+This is a text file in reStructuredText format to test the above module.
+
+The module exists in current directory and function to test exists
+------------------------------------------------------------------
+    >>> __import__('3-say_my_name')	#doctest: +ELLIPSIS
+    <module '3-say_my_name' ...>
+
+    >>> __import__('3-say_my_name').say_my_name	#doctest: +ELLIPSIS
+    <function say_my_name at 0x...>
+
+
+The module contains documentation
+---------------------------------
+
+    >>> len(__import__('3-say_my_name').__doc__) > 0
+    True
+    >>> len(__import__('3-say_my_name').say_my_name.__doc__) > 0
+    True
+
+Using ``say_my_name``
+-------------------
+
+First import ``say_my_name`` from the ``3-say_my_name`` module:
+
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Now use it:
+
+    >>> say_my_name("Guido", "Von Rossum")
+    My name is Guido Von Rossum
+
+It should not work if arguments are not both strings
+
+    >>> def test_exceptions(func, tests):
+    ...     for test in tests:
+    ...         try:
+    ...             func(test[0], test[1])
+    ...         except Exception as e:
+    ...             pass
+    ...		    print("Failed with {} for input {} and {}".format(type(e).__name__, type(test[0]), type(test[1])))
+    ...         else:
+    ...             print("Did not fail for input {} and {}".format(test[0], test[1]))
+    ... 
+
+    >>> tests = [(2.3, "a string"), (1.2, [1, 2]), (1, set("abracadabra")), (1.5, set("abracadabra")), (5, {"a":1, "b":4.5}), (5.34, {"a":1, "b":4.5}), (3, test_exceptions), (3.45, test_exceptions), (4, range(5)), (3.45, b'byte literal'), (3, None), ([], 3.4), ([[]], -5), ([[],[]], 3.6), ("a string", [1, 2]), ("hi", set("abracadabra")), ("wow", {"a":1, "b":4.5}), ("nope", test_exceptions), ("should it", range(5)), ("And", None)] 
+
+    >>> test_exceptions(say_my_name, tests)
+    Failed with TypeError for input <class 'float'> and <class 'str'>
+    Failed with TypeError for input <class 'float'> and <class 'list'>
+    Failed with TypeError for input <class 'int'> and <class 'set'>
+    Failed with TypeError for input <class 'float'> and <class 'set'>
+    Failed with TypeError for input <class 'int'> and <class 'dict'>
+    Failed with TypeError for input <class 'float'> and <class 'dict'>
+    Failed with TypeError for input <class 'int'> and <class 'function'>
+    Failed with TypeError for input <class 'float'> and <class 'function'>
+    Failed with TypeError for input <class 'int'> and <class 'range'>
+    Failed with TypeError for input <class 'float'> and <class 'bytes'>
+    Failed with TypeError for input <class 'int'> and <class 'NoneType'>
+    Failed with TypeError for input <class 'list'> and <class 'float'>
+    Failed with TypeError for input <class 'list'> and <class 'int'>
+    Failed with TypeError for input <class 'list'> and <class 'float'>
+    Failed with TypeError for input <class 'str'> and <class 'list'>
+    Failed with TypeError for input <class 'str'> and <class 'set'>
+    Failed with TypeError for input <class 'str'> and <class 'dict'>
+    Failed with TypeError for input <class 'str'> and <class 'function'>
+    Failed with TypeError for input <class 'str'> and <class 'range'>
+    Failed with TypeError for input <class 'str'> and <class 'NoneType'>
+
+    >>> test_exceptions(say_my_name, [(test[1], test[0]) for test in tests])
+    Failed with TypeError for input <class 'str'> and <class 'float'>
+    Failed with TypeError for input <class 'list'> and <class 'float'>
+    Failed with TypeError for input <class 'set'> and <class 'int'>
+    Failed with TypeError for input <class 'set'> and <class 'float'>
+    Failed with TypeError for input <class 'dict'> and <class 'int'>
+    Failed with TypeError for input <class 'dict'> and <class 'float'>
+    Failed with TypeError for input <class 'function'> and <class 'int'>
+    Failed with TypeError for input <class 'function'> and <class 'float'>
+    Failed with TypeError for input <class 'range'> and <class 'int'>
+    Failed with TypeError for input <class 'bytes'> and <class 'float'>
+    Failed with TypeError for input <class 'NoneType'> and <class 'int'>
+    Failed with TypeError for input <class 'float'> and <class 'list'>
+    Failed with TypeError for input <class 'int'> and <class 'list'>
+    Failed with TypeError for input <class 'float'> and <class 'list'>
+    Failed with TypeError for input <class 'list'> and <class 'str'>
+    Failed with TypeError for input <class 'set'> and <class 'str'>
+    Failed with TypeError for input <class 'dict'> and <class 'str'>
+    Failed with TypeError for input <class 'function'> and <class 'str'>
+    Failed with TypeError for input <class 'range'> and <class 'str'>
+    Failed with TypeError for input <class 'NoneType'> and <class 'str'>
+
+It requires 1 or 2 arguments
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
+
+    >>> say_my_name("Guido", "Von", "Rossum")
+    Traceback (most recent call last):
+    TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
+
+If only the first name is given, the result ends with a space
+
+    >>> say_my_name("Guido")	 #doctest: +REPORT_NDIFF
+    My name is Guido 
+
+There is a space after Guido in output above
+If both arguments are empty lists
+
+    >>> say_my_name("")	    #doctest: +REPORT_NDIFF
+    My name is  

@@ -1,0 +1,138 @@
+The ``0-add_integer`` module
+======================
+
+This is a text file in reStructuredText format to test the above module.
+
+Using ``add_integer``
+-------------------
+
+First import ``add_integer`` from the ``0-add_integer`` module:
+
+    >>> add_integer = __import__('0-add_integer').add_integer
+
+Now use it:
+
+    >>> add_integer(1, 2)
+    3
+
+This function is symmetric for its arguments with integers
+
+>>> def test_sym(func, tests):
+...     for test in tests:
+...         print(func(test[0], test[1]))
+...         print(func(test[1], test[0]))
+... 
+
+    >>> test_sym(add_integer, [(1, 2), (1, -2), (-10, -3)])
+    3
+    3
+    -1
+    -1
+    -13
+    -13
+
+It also works with ints and floats
+
+    >>> test_sym(add_integer, [(1.1, 2), (1, -2.45)])
+    3
+    3
+    -1
+    -1
+
+If both arguments are floats, casting is done before the addition
+
+    >>> test_sym(add_integer, [(1.234, 2.346), (1.99, -1.01), (-10.1342, -3.42)])
+    3
+    3
+    0
+    0
+    -13
+    -13
+
+Test really high numbers
+be careful http://stackoverflow.com/questions/9860588/maximum-value-for-long-integer
+do not use scientific notation as it is a float
+
+    >>> add_integer(11111111111111111111111111111122222222222222222222222222222222233333333333333333333333333333333333333333333344444444444444444444444444444444444444444444444444455555555555555555555555555555555555555555555555555555555555555555555555555555555555555555666666666666666666666666666666666666666666666666666666666666666666666666666666666666666777777777777777777777777777777777777777777777777777777777777777777777777777777788888888888888888888888888888888888888888888888888888888888888888888888889999999999999999999999999999999999999999999999999999999999999999, 999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999900000000000000000000000000000000000000000000000000000000000000000000000888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888877777777777777777777777777777777777777777777777777777777776666666666666666666666666666666666666666666666666666665555555555555555555555555555555555555555555555555555555555333333333333333333333333333333333222222222222222222222222222222222222222222222222222222211111111111111111111111111111111111111111111111111111111111111111111111111111111111111111)
+    1000000000000000000000000000000000000000000000000000000000000000000000011111111111111111111111111111022222222222222222222222222222222233333333333333333333333333333333333334222222233333333333333333333333333333333333333333333333333344444444444444444444444444444444444444444444433333333333333333333333333333333333333333333444444444444443333333333333333333333333333333333333333333333333333332222222222222222222333333333333333333333333333333333333333111111111111111111111111111111111000000011111111111111111111111111111111111111111111111100000000000000000000000001111111111111111111111111111111111111111111111111111111111111110
+
+If you go above a threshold, it will not work
+
+    >>> add_integer(float("inf"), float("inf"))
+    Traceback (most recent call last):
+    OverflowError: cannot convert float infinity to integer
+
+
+If the second argument is not an integer or a float it will fail
+
+
+    >>> def test_exceptions(func, tests):
+    ...     for test in tests:
+    ...         try:
+    ...             func(test[0], test[1])
+    ...         except Exception as e:
+    ...             pass
+    ...		    print("Failed with {} for input {} and {}".format(type(e).__name__, type(test[0]), type(test[1])))
+    ...         else:
+    ...             print("Did not fail for input {} and {}".format(test[0], test[1]))
+    ... 
+
+    >>> tests = [(1, "a"), (2.3, "a string"), (1, [1, 2]), (1.2, [1, 2]), (1, set("abracadabra")), (1.5, set("abracadabra")), (5, {"a":1, "b":4.5}), (3, test_exceptions), (2, True), (4, range(5)), (3.45, b'byte literal')] 
+
+    >>> test_exceptions(add_integer, tests)
+    Failed with TypeError for input <class 'int'> and <class 'str'>
+    Failed with TypeError for input <class 'float'> and <class 'str'>
+    Failed with TypeError for input <class 'int'> and <class 'list'>
+    Failed with TypeError for input <class 'float'> and <class 'list'>
+    Failed with TypeError for input <class 'int'> and <class 'set'>
+    Failed with TypeError for input <class 'float'> and <class 'set'>
+    Failed with TypeError for input <class 'int'> and <class 'dict'>
+    Failed with TypeError for input <class 'int'> and <class 'function'>
+    Failed with TypeError for input <class 'int'> and <class 'bool'>
+    Failed with TypeError for input <class 'int'> and <class 'range'>
+    Failed with TypeError for input <class 'float'> and <class 'bytes'>
+
+If the first argument is not an integer or a float it will fail
+
+    >>> test_exceptions(add_integer, [(test[1], test[0]) for test in tests])    #doctest: +ELLIPSIS
+    Failed with TypeError for input <class 'str'> and <class 'int'>
+    Failed with TypeError for input <class 'str'> and <class 'float'>
+    Failed with TypeError for input <class 'list'> and <class 'int'>
+    Failed with TypeError for input <class 'list'> and <class 'float'>
+    Failed with TypeError for input <class 'set'> and <class 'int'>
+    Failed with TypeError for input <class 'set'> and <class 'float'>
+    Failed with TypeError for input <class 'dict'> and <class 'int'>
+    Failed with TypeError for input <class 'function'> and <class 'int'>
+    Failed with TypeError for input <class 'bool'> and <class 'int'>
+    Failed with TypeError for input <class 'range'> and <class 'int'>
+    Failed with TypeError for input <class 'bytes'> and <class 'float'>
+
+It does not work to add 2 sequence types
+
+    >>> add_integer("cannot add", "strings")
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> add_integer(['N', 'o'], ['p', 'e'])
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+    >>> add_integer(('N', 'o'), ('p', 'e'))
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+Test pass number as string, int() but should raise error
+
+    >>> add_integer('123', 3)
+    Traceback (most recent call last):
+    TypeError: a must be an integer
+
+This function requires 2 arguments
+
+     >>> add_integer(1)
+     Traceback (most recent call last):
+     TypeError: add_integer() missing 1 required positional argument: 'b'
+
+     >>> add_integer(1, 2, 3)
+     Traceback (most recent call last):
+     TypeError: add_integer() takes 2 positional arguments but 3 were given

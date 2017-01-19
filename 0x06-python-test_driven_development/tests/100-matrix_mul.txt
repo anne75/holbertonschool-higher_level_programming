@@ -1,0 +1,30 @@
+The ``100-matrix_mul`` module
+======================
+
+This is a text file in reStructuredText format to test the above module.
+
+The module exists in current directory and function to test exists
+------------------------------------------------------------------
+    >>> __import__('100-matrix_mul')	#doctest: +ELLIPSIS
+    <module '100-matrix_mul' ...>
+
+    >>> __import__('100-matrix_mul').matrix_mul	#doctest: +ELLIPSIS
+    <function matrix_mul at 0x...>
+
+
+The module contains documentation
+---------------------------------
+
+    >>> len(__import__('100-matrix_mul').__doc__) > 0
+    True
+    >>> len(__import__('100-matrix_mul').matrix_mul.__doc__) > 0
+    True
+
+Using ``matrix_mul``
+-------------------
+
+First import ``matrix_mul`` from the ``100-matrix_mul`` module:
+
+    >>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+Now use it:

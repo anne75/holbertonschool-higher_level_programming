@@ -1,0 +1,123 @@
+The ``1-mul`` module
+======================
+
+This is a text file in reStructuredText format to test the above module.
+
+Using ``mul``
+-------------------
+
+First import ``mul`` from the ``1-mul`` module:
+
+    >>> mul = __import__('1-mul').mul
+
+Now use it:
+
+    >>> mul(1, 2)
+    2
+
+0 gets printed with a .
+
+    >>> mul(0, 3465943673492673968.3857349867)
+    0.0
+
+
+When it works
+
+     >>> def test_sym(func, tests):
+     ...     for test in tests:
+     ...         print("{} * {} = {}".format(test[0], test[1], func(test[0], test[1])))
+     ...         print("{} * {} = {}".format(test[1], test[0], func(test[1], test[0])))
+     ...  
+
+     >>> tests = [(2, 1), (1, -2), (3, 4.31451), (-4, 4.24), (4.5, -4.5), (2, False), (2.45, True), (True, True), (4, "Holberton"), (4, ("hi", 3.54)), (5, [1, 2]), (float("inf"), float("inf")), (float("inf"), -float("inf"))]
+    >>> test_sym(mul, tests)
+    2 * 1 = 2
+    1 * 2 = 2
+    1 * -2 = -2
+    -2 * 1 = -2
+    3 * 4.31451 = 12.94353
+    4.31451 * 3 = 12.94353
+    -4 * 4.24 = -16.96
+    4.24 * -4 = -16.96
+    4.5 * -4.5 = -20.25
+    -4.5 * 4.5 = -20.25
+    2 * False = 0
+    False * 2 = 0
+    2.45 * True = 2.45
+    True * 2.45 = 2.45
+    True * True = 1
+    True * True = 1
+    4 * Holberton = HolbertonHolbertonHolbertonHolberton
+    Holberton * 4 = HolbertonHolbertonHolbertonHolberton
+    4 * ('hi', 3.54) = ('hi', 3.54, 'hi', 3.54, 'hi', 3.54, 'hi', 3.54)
+    ('hi', 3.54) * 4 = ('hi', 3.54, 'hi', 3.54, 'hi', 3.54, 'hi', 3.54)
+    5 * [1, 2] = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
+    [1, 2] * 5 = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2]
+    inf * inf = inf
+    inf * inf = inf
+    inf * -inf = -inf
+    -inf * inf = -inf
+
+Should try negative numbers as well
+
+Sequences cannot be multiplied by a float
+Other types fail for everything
+
+    >>> def test_exceptions(func, tests):
+    ...     for test in tests:
+    ...         try:
+    ...             func(test[0], test[1])
+    ...         except Exception as e:
+    ...             pass
+    ...		    print("Failed with {} for input {} and {}".format(type(e).__name__, type(test[0]), type(test[1])))
+    ...         else:
+    ...             print("Did not fail for input {} and {}".format(test[0], test[1]))
+    ... 
+
+    >>> tests = [(2.3, "a string"), (1.2, [1, 2]), (1, set("abracadabra")), (1.5, set("abracadabra")), (5, {"a":1, "b":4.5}), (5.34, {"a":1, "b":4.5}), (3, test_exceptions), (3.45, test_exceptions), (4, range(5)), (3.45, b'byte literal'), (3, None)] 
+
+    >>> test_exceptions(mul, tests)
+    Failed with TypeError for input <class 'float'> and <class 'str'>
+    Failed with TypeError for input <class 'float'> and <class 'list'>
+    Failed with TypeError for input <class 'int'> and <class 'set'>
+    Failed with TypeError for input <class 'float'> and <class 'set'>
+    Failed with TypeError for input <class 'int'> and <class 'dict'>
+    Failed with TypeError for input <class 'float'> and <class 'dict'>
+    Failed with TypeError for input <class 'int'> and <class 'function'>
+    Failed with TypeError for input <class 'float'> and <class 'function'>
+    Failed with TypeError for input <class 'int'> and <class 'range'>
+    Failed with TypeError for input <class 'float'> and <class 'bytes'>
+    Failed with TypeError for input <class 'int'> and <class 'NoneType'>
+
+If the first argument is not an integer or a float it will fail
+
+    >>> test_exceptions(mul, [(test[1], test[0]) for test in tests])    #doctest: +ELLIPSIS
+    Failed with TypeError for input <class 'str'> and <class 'float'>
+    Failed with TypeError for input <class 'list'> and <class 'float'>
+    Failed with TypeError for input <class 'set'> and <class 'int'>
+    Failed with TypeError for input <class 'set'> and <class 'float'>
+    Failed with TypeError for input <class 'dict'> and <class 'int'>
+    Failed with TypeError for input <class 'dict'> and <class 'float'>
+    Failed with TypeError for input <class 'function'> and <class 'int'>
+    Failed with TypeError for input <class 'function'> and <class 'float'>
+    Failed with TypeError for input <class 'range'> and <class 'int'>
+    Failed with TypeError for input <class 'bytes'> and <class 'float'>
+    Failed with TypeError for input <class 'NoneType'> and <class 'int'>
+
+
+You can do large numbers but at one point it will fail to give the right result
+    >>> mul(1e100, -3e10)
+    -3e+110
+
+    >>> mul(1e100, -3e102)
+    -2.9999999999999997e+202
+
+This function requires 2 arguments
+
+     >>> mul(1)
+     Traceback (most recent call last):
+     TypeError: mul() missing 1 required positional argument: 'b'
+
+     >>> mul(1, 2, 3)
+     Traceback (most recent call last):
+     TypeError: mul() takes 2 positional arguments but 3 were given
