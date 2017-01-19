@@ -82,7 +82,7 @@ It should work only if the first argument has rows of the same length
 
     >>> matrix_divided([[1 , 2 , 3], [4, 5], [7, 8, 9]], 1)
     Traceback (most recent call last):
-    TypeError: matrix must be a matrix (list of lists) of integers/floats
+    TypeError: Each row of the matrix must have the same size
 
 It should only work if the values in the matrix are floats or ints
 

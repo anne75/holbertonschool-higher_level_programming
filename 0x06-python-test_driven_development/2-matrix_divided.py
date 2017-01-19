@@ -45,7 +45,7 @@ def matrix_divided(matrix, div):
         raise TypeError(error)
 
     if max(rows_length) != min(rows_length) or max(rows_length) == 0:
-        raise TypeError(error)
+        raise TypeError("Each row of the matrix must have the same size")
 
     new = [[round(n / div, 2) for n in row] for row in matrix]
     return (new)
