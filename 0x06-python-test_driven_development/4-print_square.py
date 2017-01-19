@@ -9,6 +9,7 @@ You can run it with
 print_square = __import__('4-print_square').print_square
 """
 
+
 def print_square(size):
     """
     prints a square of the desired size
@@ -16,7 +17,7 @@ def print_square(size):
     Arguments:
         size: must be a positive or 0 integer, size of square
     """
-    if not isinstance(size, int) and not size is bool:
+    if not isinstance(size, int) or type(size) is bool:
         raise TypeError("size must be an integer")
     if (size < 0):
         raise ValueError("size must be >= 0")
