@@ -41,7 +41,8 @@ WRONG
 ...	        print("{}: {}".format(type(e).__name__, e))
 ...
 
-    >>> test_init_bad(["hello", [1, 2], {}, ("a", 1), 23.456, set(), test_init_bad, True])
+    >>> test_init_bad(["hello", [1, 2], {}, ("a", 1), 23.456, set(), test_init_bad, True, None])
+    TypeError: size must be an integer
     TypeError: size must be an integer
     TypeError: size must be an integer
     TypeError: size must be an integer
@@ -123,7 +124,8 @@ WRONG
     ...	            print("{}: {}".format(type(e).__name__, e))
     ...
 
-    >>> test_init_bad2(["hello", [1, 2], {}, ("a", 1), 23.456, set(), test_init_bad2, True])
+    >>> test_init_bad2(["hello", [1, 2], {}, ("a", 1), 23.456, set(), test_init_bad2, True, None])
+    TypeError: size must be an integer
     TypeError: size must be an integer
     TypeError: size must be an integer
     TypeError: size must be an integer
