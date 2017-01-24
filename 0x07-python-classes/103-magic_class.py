@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import math
 
-
+# see http://stackoverflow.com/a/19560286 for bytecode
 
 
 class MagicClass:
@@ -18,4 +18,4 @@ class MagicClass:
 
 
     def circumference(self):
-        return ( 2 * math.pi * self.__radius)
+        return (2 * math.pi * self.__radius)

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This is module 5-square
+This is module 101-square
 
 This module contains one class Square
 """

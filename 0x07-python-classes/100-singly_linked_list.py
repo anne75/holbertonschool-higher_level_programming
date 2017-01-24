@@ -6,6 +6,7 @@ This module contains the definition of 2 classes:
 Node and SinglyLinkedList
 """
 
+
 class Node:
     """
     Creates type Node
@@ -99,7 +100,6 @@ class SinglyLinkedList:
 
         no arguments
         """
-        print("in init")
         self.__head = None
 
     def __str__(self):
@@ -108,10 +108,11 @@ class SinglyLinkedList:
         """
         node = self.__head
         string = ""
-        while node.next_node is not None:
-            string += "{:d}\n".format(node.data)
-            node = node.next_node
-        string += "{:d}".format(node.data)
+        if node is not None:
+            while node.next_node is not None:
+                string += "{:d}\n".format(node.data)
+                node = node.next_node
+            string += "{:d}".format(node.data)
         return (string)
 
     def sorted_insert(self, value):
