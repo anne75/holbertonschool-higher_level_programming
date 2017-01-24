@@ -89,6 +89,15 @@ Can't use ``x.size`` as the getter will run and work
     >>> print(x._Square__size)
     3
 
+    >>> print(x.__size)
+    Traceback (most recent call last):
+    AttributeError: 'Square' object has no attribute '__size'
+
+    >>> print(x._size)
+    Traceback (most recent call last):
+    AttributeError: 'Square' object has no attribute '_size'
+
+
 Testing size to retrieve the size
 ---------------------------------
 
