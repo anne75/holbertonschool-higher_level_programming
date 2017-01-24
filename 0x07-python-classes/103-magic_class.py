@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import math
 
-# see http://stackoverflow.com/a/19560286 for bytecode
+
 class MagicClass:
     """class Magic"""
 
@@ -19,3 +19,5 @@ class MagicClass:
     def circumference(self):
         """circle perimeter"""
         return (2 * math.pi * self.__radius)
+
+# see http://stackoverflow.com/a/19560286 for bytecode
