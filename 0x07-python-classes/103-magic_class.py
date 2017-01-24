@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-""" import math """
+import math
+""" module comment"""
 
 
 class MagicClass:
     """class Magic"""
-
     def __init__(self, radius):
         """instantiate"""
         self.__radius = 0
