@@ -1,0 +1,163 @@
+>>> Square = __import__('102-square').Square
+
+Testing __init__(self, size)
+----------------------------
+size is an optional argument. If given it must be an int >= 0
+
+WRONG
+
+>>> def test_init_bad(tests):
+...    for test in tests:
+...        try:
+...            x = Square(test)
+...        except Exception as e:
+...            print("{}: {}".format(type(e).__name__, e))
+...
+
+>>> test_init_bad(["hello", [1, 2], {}, ("a", 1), set(), test_init_bad, True])  #added boolean
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+
+>>> x = Square(-1)
+Traceback (most recent call last):
+ValueError: size must be >= 0
+
+
+GOOD
+>>> x = Square(3)
+>>> print(type(x))
+<class '102-square.Square'>
+
+>>> print(x.__dict__)
+{'_Square__size': 3}
+
+>>> x = Square(3.0)
+>>> print(type(x))
+<class '102-square.Square'>
+
+>>> print(x.__dict__)
+{'_Square__size': 3.0}
+
+
+>>> x = Square()
+>>> print(type(x))
+<class '102-square.Square'>
+
+>>> print(x.__dict__)
+{'_Square__size': 0}
+
+>>> x = Square(0)
+>>> print(type(x))
+<class '102-square.Square'>
+
+>>> print(x.__dict__)
+{'_Square__size': 0}
+
+
+Testing size is hidden
+----------------------
+Can't use ``x.size`` as the getter will run and work
+
+>>> x = Square(3)
+>>> print(x._Square__size)
+3
+
+Testing size to retrieve the size
+---------------------------------
+
+>>> x = Square()
+>>> print(x.size)
+0
+
+>>> x = Square(5)
+>>> print(x.size)
+5
+
+Testing size to set size
+------------------------
+
+WRONG
+>>> x = Square()
+
+>>> def test_init_bad2(tests):
+...    for test in tests:
+...        try:
+...            x.size = test
+...        except Exception as e:
+...            print("{}: {}".format(type(e).__name__, e))
+...
+
+>>> test_init_bad2(["hello", [1, 2], {}, ("a", 1), set(), test_init_bad2, True])  #added boolean
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+TypeError: size must be a number
+
+>>> x.size = -1
+Traceback (most recent call last):
+ValueError: size must be >= 0
+
+GOOD
+
+>>> x = Square(3)
+>>> print(x.size)
+3
+
+>>> x.size = 0
+>>> print(x.size)
+0
+
+>>> x.size = 5
+>>> print(x.size)
+5
+
+Testing area
+---------------------------------
+
+>>> x = Square(3)
+>>> print(x.area())
+9
+
+>>> x.size = 0
+>>> print(x.area())
+0
+
+>>> x.size = 5
+>>> print(x.area())
+25
+
+Comparison Operator Testing w/ different values
+---------------------------------
+>>> x = Square(3)
+>>> y = Square(4)
+>>> print(x < y)
+True
+
+>> print(y < x)
+False
+
+>>> print(x > y)
+False
+
+>>> print(y > x)
+True
+
+>>> print(x == y)
+False
+
+>>> print(y == x)
+False
+
+>>> print(x != y)
+True
+
+>>> print(y != x)
+True
