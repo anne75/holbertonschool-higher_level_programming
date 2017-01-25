@@ -61,7 +61,6 @@ class Rectangle:
         if self.__check_arg(value, "height"):
             self.__height = value
 
-
     @property
     def width(self):
         """Getter for width"""
@@ -77,7 +76,6 @@ class Rectangle:
         """
         if self.__check_arg(value, "width"):
             self.__width = value
-
 
     def __check_arg(self, value, attribute):
         """
@@ -97,18 +95,15 @@ class Rectangle:
             raise ValueError("{} must be >= 0".format(attribute))
         return (True)
 
-
     def area(self):
         """ Area of Rectangle"""
         return (self.__height * self.__width)
-
 
     def perimeter(self):
         """ Perimeter of Rectangle"""
         if (self.__width == 0) or (self.__height == 0):
             return (0)
         return (2 * (self.__height + self.__width))
-
 
     def __str__(self):
         """String representation of Rectangle"""

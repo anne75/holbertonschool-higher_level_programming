@@ -50,7 +50,6 @@ class Rectangle:
         if self.__check_arg(value, "height"):
             self.__height = value
 
-
     @property
     def width(self):
         """Getter for width"""
@@ -66,7 +65,6 @@ class Rectangle:
         """
         if self.__check_arg(value, "width"):
             self.__width = value
-
 
     def __check_arg(self, value, attribute):
         """
