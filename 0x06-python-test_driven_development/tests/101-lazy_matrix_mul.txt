@@ -31,37 +31,37 @@ It should not work if the arguments are not not a non empty list of non empty li
 Arguments are not both lists of lists
 
     >>> test_exceptions(lazy_matrix_mul, tests)
-    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U32') dtype('<U32') dtype('<U32')
-    NO EXCEPTION for input 1.2 and [1, 2]
-    Failed with TypeError: unsupported operand type(s) for *: 'float' and 'set'
-    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'dict'
-    NO EXCEPTION for input 4 and range(0, 5)
-    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('S32') dtype('S32') dtype('S32')
-    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'NoneType'
-    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U8') dtype('<U8') dtype('<U8')
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with TypeError: Object arrays are not currently supported
+    Failed with TypeError: Object arrays are not currently supported
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with TypeError: Object arrays are not currently supported
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
     NO EXCEPTION for input [[1, 2], [1, 2]] and [1, 2]
-    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'set'
-    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'dict'
+    Failed with TypeError: Object arrays are not currently supported
+    Failed with TypeError: Object arrays are not currently supported
     Failed with ValueError: shapes (2,2) and (5,) not aligned: 2 (dim 1) != 5 (dim 0)
-    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('S12') dtype('S12') dtype('S12')
-    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'NoneType'
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with TypeError: Object arrays are not currently supported
 
 
     >>> test_exceptions(lazy_matrix_mul, [(test[1], test[0]) for test in tests])
-    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U32') dtype('<U32') dtype('<U32')
-    NO EXCEPTION for input [1, 2] and 1.2
-    Failed with TypeError: unsupported operand type(s) for *: 'set' and 'float'
-    Failed with TypeError: unsupported operand type(s) for *: 'dict' and 'int'
-    NO EXCEPTION for input range(0, 5) and 4
-    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('S32') dtype('S32') dtype('S32')
-    Failed with TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
-    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U8') dtype('<U8') dtype('<U8')
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with TypeError: Object arrays are not currently supported
+    Failed with TypeError: Object arrays are not currently supported
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with TypeError: Object arrays are not currently supported
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
     NO EXCEPTION for input [1, 2] and [[1, 2], [1, 2]]
-    Failed with TypeError: unsupported operand type(s) for *: 'set' and 'int'
-    Failed with TypeError: unsupported operand type(s) for *: 'dict' and 'int'
+    Failed with TypeError: Object arrays are not currently supported
+    Failed with TypeError: Object arrays are not currently supported
     Failed with ValueError: shapes (5,) and (2,2) not aligned: 5 (dim 0) != 2 (dim 0)
-    Failed with TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('S12') dtype('S12') dtype('S12')
-    Failed with TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+    Failed with ValueError: Scalar operands are not allowed, use '*' instead
+    Failed with TypeError: Object arrays are not currently supported
 
 
 An argument is an empty list
@@ -88,17 +88,17 @@ Should automate that
     >>> tests = [([[1, 2], [1, 2]], [[1, 2], ["a", 2]]), ([[1, 2], [1, 2]], [[1, 2], [[1, 2], 2]]), ([[1, 2], [1, 2]], [[1, 2], [True, 2]]), ([[1, 2], [1, 2]], [[1, 2], [1, None]])]
 
     >>> test_exceptions(lazy_matrix_mul, tests)
-    Failed with ValueError: data type must provide an itemsize
+    Failed with TypeError: invalid data type for einsum
     Failed with ValueError: setting an array element with a sequence.
     NO EXCEPTION for input [[1, 2], [1, 2]] and [[1, 2], [True, 2]]
-    Failed with TypeError: unsupported operand type(s) for *: 'int' and 'NoneType'
+    Failed with TypeError: Object arrays are not currently supported
 
 
     >>> test_exceptions(lazy_matrix_mul, [(test[1], test[0]) for test in tests])
-    Failed with ValueError: data type must provide an itemsize
+    Failed with TypeError: invalid data type for einsum
     Failed with ValueError: setting an array element with a sequence.
     NO EXCEPTION for input [[1, 2], [True, 2]] and [[1, 2], [1, 2]]
-    Failed with TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'
+    Failed with TypeError: Object arrays are not currently supported
 
 
 In one of the arguments, we have missing/extra elements
