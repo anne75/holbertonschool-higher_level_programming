@@ -66,10 +66,12 @@ void print_python_string(PyObject *p)
 			if (nb_bytes == 1)
 			{
 				printf("%s\n", (char *)(DATA(p)));
+				printf("HERE\n");
+				printf( "%s\n", "\u00E9");
 			}
 			else
 			{
-				printf("%ls\n", (wchar_t *)(DATA(p)));
+				printf("%s\n", (unsigned short *)(DATA(p)));
 			}
 		}
 
@@ -77,34 +79,6 @@ void print_python_string(PyObject *p)
 	else
 	{
 		puts("  [ERROR] Invalid String Object");
-	}
-}
-
-/**
- * print_python_bytes - print strings in python
- * @p: pyObject
- */
-void print_python_bytes(PyObject *p)
-{
-	Py_ssize_t size, max_v, i;
-
-/*	printf("%s\n", p->ob_type->tp_name);*/
-	puts("[.] bytes object info");
-	if (is_type(TYPE(p)->tp_name, "bytes"))
-	{
-		size = SIZE(p);
-		printf("  size: %lu\n", size);
-		printf("  trying string: %s\n",((PyBytesObject *)p)->ob_sval);
-		max_v = (size >= 10 ) ? 10 : size + 1;
-		printf("  first %lu bytes:", max_v);
-		for (i = 0; i < max_v; i += 1)
-			printf(" %02x",
-			       (((PyBytesObject *)p)->ob_sval[i]) & 0xff);
-		puts("");
-	}
-	else
-	{
-		puts("  [ERROR] Invalid Bytes Object");
 	}
 }
 
@@ -136,38 +110,3 @@ void print_python_float(PyObject *p)
 /* thanks to https://mail.python.org/pipermail/python-list/2009-March/527813.
  * html
  */
-
-
-/**
- * print_python_list_info - print info about python lists
- * @p: a python object
- */
-void print_python_list(PyObject *p)
-{
-	Py_ssize_t size, i;
-	PyObject *o;
-
-	puts("[*] Python list info");
-/*	printf("%s\n", p->ob_type->tp_name);*/
-	if (is_type(TYPE(p)->tp_name, "list"))
-	{
-		size = SIZE(p);
-		printf("[*] Size of the Python List = %lu\n", size);
-		printf("[*] Allocated = %lu\n", ((PyListObject *)p)->allocated);
-
-		for (i = 0; i < size; ++i)
-		{
-			o = ((PyListObject *)(p))->ob_item[i];
-			printf("Element %lu: %s\n",i ,
-			       (TYPE(o))->tp_name);
-			if (is_type(TYPE(o)->tp_name, "bytes"))
-				print_python_bytes(o);
-			if (is_type(TYPE(o)->tp_name, "float"))
-				print_python_float(o);
-		}
-	}
-	else
-	{
-		puts("  [ERROR] Invalid List Object");
-	}
-}

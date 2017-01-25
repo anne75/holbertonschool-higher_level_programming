@@ -29,5 +29,6 @@ def lazy_matrix_mul(m_a, m_b):
 
 #    a_np = np.array(m_a)
 #    b_np = np.array(m_b)
-    p_np = np.dot(m_a, m_b)
+#    do not cast, do no use dot product
+    p_np = np.matmul(m_a, m_b)
     return (p_np)
