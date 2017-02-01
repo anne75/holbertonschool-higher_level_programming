@@ -20,7 +20,6 @@ class Rectangle(BaseGeometry):
     area
     __str__
     """
-
     def __init__(self, width, height):
         """
         instantiates a Rectangle is wodth and height are positive int
@@ -40,5 +39,5 @@ class Rectangle(BaseGeometry):
 
     def __str__(self):
         """returns nice string"""
-        return "[Rectangle] {width}/{height}".format(width = self.__width,
-                                                     height = self.__height)
+        return "[Rectangle] {width}/{height}".format(width=self.__width,
+                                                     height=self.__height)

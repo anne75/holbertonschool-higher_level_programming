@@ -25,7 +25,6 @@ class MyInt(int):
         """ creates a new object """
         return super().__new__(cls, value)
 
-
     def __eq__(self, other):
         """ inverts the meaning """
         if super().__eq__(other):

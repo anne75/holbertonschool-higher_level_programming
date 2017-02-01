@@ -6,6 +6,7 @@ This module contains one class
 """
 Rectangle = __import__('9-rectangle').Rectangle
 
+
 class Square(Rectangle):
     """
     Creates a Square
@@ -18,7 +19,6 @@ class Square(Rectangle):
     __init__
     __str__
     """
-
     def __init__(self, size):
         """
         Instantiates a square
@@ -32,4 +32,5 @@ class Square(Rectangle):
 
     def __str__(self):
         """makes nice string"""
-        return "[{}] {size}/{size}".format(self.__class__.__name__, size = self.__size)
+        return "[{}] {size}/{size}".format(self.__class__.__name__,
+                                           size=self.__size)
