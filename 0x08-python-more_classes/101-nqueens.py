@@ -7,6 +7,7 @@ It does it 2 ways:
 """
 import sys
 
+
 class Queens:
     """
     This class is used to solve the n-queens problem, giving all solutions
@@ -138,7 +139,7 @@ def solve_stack(size):
 
 if __name__ == "__main__":
 
-# the error checking is done here to use both solutions
+    # the error checking is done here to use both solutions
 
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
@@ -155,6 +156,6 @@ if __name__ == "__main__":
         sys.exit(1)
 
     q = Queens(int(sys.argv[1]))
-    q.solve_rec(0)
-    print("----")
+    # q.solve_rec(0)
+
     solve_stack(int(sys.argv[1]))
