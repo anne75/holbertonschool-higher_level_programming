@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This is module 0-rea_file.
+This is module 0-read_file.
 This module contains only one function.
 """
 
