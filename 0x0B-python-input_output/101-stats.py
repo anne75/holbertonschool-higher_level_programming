@@ -20,7 +20,10 @@ def parse_stdin():
     try:
         for line in sys.stdin:
             line_split = line.split()
-            size += int(line_split[-1])
+            try:
+                size += int(line_split[-1])
+            except TypeError:
+                continue
             count += 1
             status_codes[line_split[-2]] = status_codes.get(line_split[-2],
                                                             0) + 1
@@ -31,5 +34,8 @@ def parse_stdin():
         print("File size: {:d}".format(size))
         print_sorted_dict(status_codes)
         raise
+    print("File size: {:d}".format(size))
+    print_sorted_dict(status_codes)
+
 
 parse_stdin()
