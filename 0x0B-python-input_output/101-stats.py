@@ -8,8 +8,9 @@ This module parses a log
 
 
 def print_sorted_dict(d):
-    print("\n".join(["{}: {:d}".format(k, d[k])
-                     for k in sorted(d.keys())]))
+    if d:
+        print("\n".join(["{}: {:d}".format(k, d[k])
+                         for k in sorted(d.keys())]))
 
 
 def parse_stdin():
