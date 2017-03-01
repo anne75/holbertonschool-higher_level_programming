@@ -35,7 +35,7 @@ CREATE TABLE `tv_genres` (
 
 LOCK TABLES `tv_genres` WRITE;
 /*!40000 ALTER TABLE `tv_genres` DISABLE KEYS */;
-INSERT INTO `tv_genres` VALUES (1,'Drama'),(2,'Mystery'),(3,'Adventure'),(4,'Fantasy'),(5,'Comedy'),(6,'Crime'),(7,'Suspense'),(8,'Thriller');
+INSERT INTO `tv_genres` VALUES (1,'Drama'),(2,'Mystery'),(3,'Adventure'),(4,'Fantasy'),(5,'Comedy'),(6,'Crime'),(7,'Suspense'),(8,'Thriller'), (9, 'Documentary');
 /*!40000 ALTER TABLE `tv_genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
