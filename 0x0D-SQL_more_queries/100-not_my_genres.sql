@@ -11,6 +11,6 @@ WHERE tv_genres.id not in
       INNER JOIN tv_shows u ON u.id = t.show_id
       INNER JOIN tv_genres v ON t.genre_id = v.id
       WHERE u.`title` = 'Dexter')
-ORDER BY tv_genres.`name` ASC
+-- ORDER BY tv_genres.`name` ASC
 
 ;
