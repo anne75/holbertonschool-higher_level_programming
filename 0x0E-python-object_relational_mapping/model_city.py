@@ -25,7 +25,8 @@ class City(Base):
     __tablename__ = "cities"
     id = sq.Column(sq.Integer, primary_key=True, nullable=False)
     name = sq.Column(sq.String(128), nullable=False)
-    state_id = sq.Column(sq.Integer, sq.ForeignKey('states.id'), nullable=False)
+    state_id = sq.Column(sq.Integer, sq.ForeignKey('states.id'),
+                         nullable=False)
 
     def __str__(self):
         """fancy printing"""
