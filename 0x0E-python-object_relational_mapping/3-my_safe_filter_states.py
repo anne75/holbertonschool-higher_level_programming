@@ -18,11 +18,10 @@ if __name__ == "__main__":
                          passwd=sys.argv[2], db=sys.argv[3])
 
         c = db.cursor()
-        command = "SELECT * FROM states WHERE name = '{:s}' ORDER BY id ASC;"
+        command = "SELECT * FROM states WHERE name = '{:s}' ORDER BY id ASC"
         c.execute(command.format(sys.argv[4],))
         for r in c.fetchall():
             print(r)
 
         c.close()
         db.close()
-        engine.dispose()
