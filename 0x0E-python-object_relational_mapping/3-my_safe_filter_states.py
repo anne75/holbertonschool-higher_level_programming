@@ -21,7 +21,9 @@ if __name__ == "__main__":
         command = """SELECT *
         FROM states
         WHERE name = '{:s}' ORDER BY id ASC;"""
-        c.execute(command.format(sys.argv[4],))
+        c.execute("""SELECT *
+        FROM states
+        WHERE name = '{:s}' ORDER BY id ASC;""".format(sys.argv[4],))
         for r in c.fetchall():
             print(r)
 
