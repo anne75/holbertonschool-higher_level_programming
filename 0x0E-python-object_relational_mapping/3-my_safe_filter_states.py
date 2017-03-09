@@ -20,7 +20,7 @@ if __name__ == "__main__":
         c = db.cursor()
         command = """SELECT *
         FROM states
-        WHERE name = %s ORDER BY id ASC;"""
+        WHERE name = '%s' ORDER BY id ASC;"""
         c.execute(command, (sys.argv[4],))
         for r in c.fetchall():
             print(r)
@@ -28,4 +28,5 @@ if __name__ == "__main__":
         c.close()
         db.close()
         engine.dispose()
+
 # Do not need to escape the % in command
