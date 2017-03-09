@@ -32,5 +32,5 @@ class City(Base):
 
     def __repr__(self):
         """print a class"""
-        return "City(name={}, id={}), state_id={}".format(
+        return "City(name={}, id={}, state_id={})".format(
             self.name, self.id, self.state_id)
