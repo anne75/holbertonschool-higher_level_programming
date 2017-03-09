@@ -21,6 +21,6 @@ if __name__ == "__main__":
     result = session.query(State).filter_by(id=2).first()
     result.name = "New Mexico"
 
-    session.commit() # otherwise not persistent
+    session.commit()   # otherwise not persistent
     session.close()
     engine.dispose()
