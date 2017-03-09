@@ -20,7 +20,7 @@ if __name__ == "__main__":
         c = db.cursor()
         command = """SELECT *
         FROM states
-        WHERE name = '{0}' ORDER BY id ASC;""".format(sys.argv[4])
+        WHERE name LIKE BINARY '{0}' ORDER BY id ASC;""".format(sys.argv[4])
         c.execute(command)
         for r in c.fetchall():
             print(r)
