@@ -18,10 +18,9 @@ if __name__ == "__main__":
 
     session = Session()
 
-    result = session.query(State).filter(State.name.like('%a%')).all()
-    if result:
-        session.delete(*result)
-        session.commit()
+    for result in session.query(State).filter(State.name.like('%a%')):
+        session.delete(result)
 
+    session.commit()
     session.close()
     engine.dispose()
