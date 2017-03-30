@@ -1,4 +1,4 @@
-##Introduction to SQL
+## Introduction to SQL
 
 All this project was done using`mysql-5.5`.  
 As a first step in SQL, the SQL statements we were introduced to are:
