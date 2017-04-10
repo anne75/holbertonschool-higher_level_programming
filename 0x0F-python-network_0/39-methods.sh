@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # make an OPTIONS request
-curl -siX OPTIONS "$1" | grep "Allow:" | cut -b8-
+curl -siLX OPTIONS "$1" | grep "Allow:" | cut -b8-

@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
-# pass a custome header variable in a GET request
-curl -LX GET -H "X-HolbertonSchool-User-Id: 98" "$1"
+#!/bin/bash
+# pass a custom header variable in a GET request
+curl -sLX GET -H "X-HolbertonSchool-User-Id: 98" "$1"
