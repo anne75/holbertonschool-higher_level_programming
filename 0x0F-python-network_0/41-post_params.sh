@@ -1,3 +1,3 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # create a POST request
-curl -d "email=hr@holbertonschool.com&subject=I+will+always+be+here+for+PLD" "$1"
+curl -Lsd "email=hr@holbertonschool.com&subject=I+will+always+be+here+for+PLD" "$1"
