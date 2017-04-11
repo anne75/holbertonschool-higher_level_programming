@@ -20,14 +20,11 @@ def get_by_resource(resource, string):
 
 
 if __name__ == "__main__":
-    resources = ["people"]
-    total_count = 0
     names = []
-    for r in resources:
-        a = get_by_resource(r, sys.argv[1]).json()
-        total_count += a.get('count')
-        for element in a.get('results'):
-            names.append(element.get('name'))
+    a = get_by_resource("people", sys.argv[1]).json()
+    for element in a.get('results'):
+        names.append(element.get('name'))
 
-    print("Number of result: {:d}".format(total_count))
-    print("\n".join(names))
+    print("Number of result: {:d}".format(a.get('count')))
+    if names:
+        print("\n".join(names))
