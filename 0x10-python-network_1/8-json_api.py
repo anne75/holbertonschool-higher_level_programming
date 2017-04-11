@@ -14,7 +14,7 @@ def print_json(q=""):
     Arguments:
         q: a parameter for a POST request
     """
-    r = requests.post("http://54.145.119.185:33214/search_user", data={'q': q})
+    r = requests.post("http://0.0.0.0:5000/search_user", data={'q': q})
     try:
         result = r.json()
     except ValueError as e:
