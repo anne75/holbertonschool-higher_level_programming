@@ -13,10 +13,12 @@ if __name__ == "__main__":
     url = "https://api.github.com/repos/{}/{}/commits".format(sys.argv[2],
                                                               sys.argv[1])
     r = requests.get(url).json()
-    for i, result in enumerate(r):
-        if i < 10:
-            print("{}: {}".format(
-                result.get('sha'),
-                result.get('commit').get('author').get('name')))
-        else:
-            break
+    if r:
+        for i, result in enumerate(r):
+            if i < 10:
+                if isinstance(result, dict):
+                    print("{}: {}".format(
+                        result.get('sha'),
+                        result.get('commit').get('author').get('name')))
+            else:
+                break
