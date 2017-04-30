@@ -1,4 +1,6 @@
 #!/usr/bin/node
+// print the title of a star wars movie depending on command line argument
+
 const request = require('request');
 const options = {
   url: 'http://swapi.co/api/films/' + process.argv[2],
