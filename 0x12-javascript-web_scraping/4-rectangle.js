@@ -5,8 +5,10 @@ exports.Rectangle = function (w, h) {
     this.height = h;
   }
   this.print = function () {
-    for (let i = 0; i < this.height; i += 1) {
-      console.log('X'.repeat(this.width));
+    if (w > 0 && h > 0) {
+      for (let i = 0; i < this.height; i += 1) {
+        console.log('X'.repeat(this.width));
+      }
     }
   };
   this.rotate = function () {
