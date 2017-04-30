@@ -1,5 +1,8 @@
 #!/usr/bin/node
-exports.Rectangle = function (w, h) {
+// create a prototype Rectangle
+// The prototype takes 2 arguments, width and height.
+
+exports.Rectangle = function Rectangle (w, h) {
   if ((w > 0) && (h > 0)) {
     this.width = w;
     this.height = h;
