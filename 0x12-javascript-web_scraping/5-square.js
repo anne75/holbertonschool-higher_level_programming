@@ -4,12 +4,12 @@
 
 const Rectangle = require('./4-rectangle').Rectangle;
 
-Square = function (size) {
+function Square (size) {
   Rectangle.call(this, size, size);
   if (size > 0) {
     this.size = size;
   }
-};
+}
 
 Square.prototype = Object.create(Rectangle.prototype);
 Square.constructor = Square;
