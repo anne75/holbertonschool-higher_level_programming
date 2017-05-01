@@ -1,15 +1,17 @@
 #!/usr/bin/node
 const Sq = require('./5-square').Square;
 
-exports.Square = function (size) {
+Square = function (size) {
   Sq.call(this, size);
 };
 
-exports.Square.prototype = Object.create(exports.Square.prototype);
-exports.Square.constructor = exports.Square;
+Square.prototype = Object.create(Sq.prototype);
+Square.constructor = Square;
 
-exports.Square.prototype.charPrint = function (c = 'X') {
+Square.prototype.charPrint = function (c = 'X') {
   for (let i = 0; i < this.height; i += 1) {
     console.log(c.repeat(this.width));
   }
 };
+
+exports.Square = Square;
