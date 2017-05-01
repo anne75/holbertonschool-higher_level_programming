@@ -12,4 +12,3 @@ function Square (size) {
 // Square.constructor = Square;
 
 exports.Square = Square;
-exports.Rectangle = Rectangle;

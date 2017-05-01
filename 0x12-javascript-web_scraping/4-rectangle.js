@@ -1,5 +1,5 @@
 #!/usr/bin/node
-exports.Rectangle = function (w, h) {
+function Rectangle (w, h) {
   if ((w > 0) && (h > 0)) {
     this.width = w;
     this.height = h;
@@ -22,4 +22,4 @@ exports.Rectangle = function (w, h) {
   };
 };
 
-// try using module.exports = { to wrap all that6
+exports.Rectangle = Rectangle;
