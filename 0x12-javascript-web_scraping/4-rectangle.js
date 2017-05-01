@@ -1,15 +1,17 @@
 #!/usr/bin/node
+// create a class rectangle with 2 attributes and 3 methods
+
 function Rectangle (w, h) {
   if ((w > 0) && (h > 0)) {
     this.width = w;
     this.height = h;
   }
   this.print = function () {
-    if (w > 0 && h > 0) {
-      for (let i = 0; i < this.height; i += 1) {
-        console.log('X'.repeat(this.width));
-      }
+//    if (w > 0 && h > 0) {
+    for (let i = 0; i < this.height; i += 1) {
+      console.log('X'.repeat(this.width));
     }
+//    }
   };
   this.rotate = function () {
     const tmp = this.width;
