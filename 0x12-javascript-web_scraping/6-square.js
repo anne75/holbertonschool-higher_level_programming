@@ -1,9 +1,9 @@
 #!/usr/bin/node
 const Sq = require('./5-square').Square;
 
-Square = function (size) {
+function Square (size) {
   Sq.call(this, size);
-};
+}
 
 Square.prototype = Object.create(Sq.prototype);
 Square.constructor = Square;
