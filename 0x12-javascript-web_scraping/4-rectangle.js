@@ -20,6 +20,6 @@ function Rectangle (w, h) {
     this.width = 2 * this.width;
     this.height = 2 * this.height;
   };
-};
+}
 
 exports.Rectangle = Rectangle;
