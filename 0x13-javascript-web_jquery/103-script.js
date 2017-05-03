@@ -14,7 +14,11 @@ $(document).ready(function () {
     console.log(new_url);
     $.getJSON(new_url,
       function (res) {
-        $('DIV#wind_speed').text(res.query.results.channel.wind.speed);
+        if (res.query.results != null) {
+          $('DIV#wind_speed').text(res.query.results.channel.wind.speed);
+        } else {
+          $('DIV#wind_speed').text('');
+        }
       }
      );
   });

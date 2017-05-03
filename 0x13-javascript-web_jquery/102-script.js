@@ -6,7 +6,11 @@ $(document).ready(function () {
     const newUrl = url.replace('city_name', cityName);
     $.getJSON(newUrl,
       function (res) {
-        $('DIV#wind_speed').text(res.query.results.channel.wind.speed);
+        if (res.query.results != null) {
+          $('DIV#wind_speed').text(res.query.results.channel.wind.speed);
+        } else {
+          $('DIV#wind_speed').text('');
+        }
       }
      );
   });
