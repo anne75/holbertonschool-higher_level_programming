@@ -7,5 +7,5 @@ $(document).ready(function () {
   });
   $('div#clear_list').on('click', function (event) {
     $('UL.my_list LI').remove();
-  })
+  });
 });
