@@ -32,6 +32,7 @@ function makeSearch (headerSearch, search) {
     url: 'https://api.twitter.com/1.1/search/tweets.json',
     method: 'GET',
     headers: headerSearch,
+    encoding: 'utf-8',
     qs: {'q': search, 'count': 5}
   };
   request(optionsSearch, function (error, response, body) {
