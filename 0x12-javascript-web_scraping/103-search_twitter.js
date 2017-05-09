@@ -2,9 +2,13 @@
 // Use twitter search api
 // allowed modules: requests, utf8 and base64
 const request = require('request');
+const base64 = require('base-64');
+const utf8 = require('utf8');
 
-const auth = 'Basic ' + Buffer.from(process.argv[2] + ':' +
-  process.argv[3]).toString('base64');
+const auth1 = process.argv[2] + ':' + process.argv[3];
+const bytes = utf8.encode(auth1);
+const encoded = base64.encode(bytes);
+const auth = 'Basic ' + encoded;
 const header = {'Authorization': auth,
   'Content-Type':
               'application/x-www-form-urlencoded;charset=UTF-8'};
