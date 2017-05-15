@@ -1,6 +1,7 @@
-#First project around sequences in Python
+## First project around sequences in Python
 This project is about manipulating `list`s in Python, including list comprehension, and `tuples` with tuples packing and unpacking. Since this project teaches us to learn the basic lists functions, exception handling was explicitely forbidden. 
 The following problems were solved:  
+
 0. Write a function that prints all integers of a list.  
 1. Write a function that retrieves an element from a list.
 2. Write a function that replaces an element of a list at a specific position.  
